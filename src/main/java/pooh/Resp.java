@@ -1,5 +1,7 @@
 package pooh;
 
+import java.util.Objects;
+
 public class Resp {
 
     private final String text;
@@ -16,5 +18,23 @@ public class Resp {
 
     public String getStatus() {
         return status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Resp resp = (Resp) o;
+        return Objects.equals(text, resp.text) && Objects.equals(status, resp.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(text, status);
     }
 }

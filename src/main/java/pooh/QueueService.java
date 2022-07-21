@@ -17,14 +17,12 @@ public class QueueService implements Service {
         if ("POST".equals(httpRequest)) {
             postReq(req);
         } else {
-            String param = getReq(req).orElse("");
-            if (param.equals("")) {
-                return new Resp("", NO_DATA);
-            } else {
+            String param = getReq(req).orElse(EMPTY_VALUE);
+            if (!EMPTY_VALUE.equals(param)) {
                 return new Resp(param, REQUEST_PASSED);
             }
         }
-        return new Resp("", NO_DATA);
+        return new Resp(EMPTY_VALUE, NO_DATA);
     }
 
     private Optional<String> getReq(Req req) {
